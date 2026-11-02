@@ -1,77 +1,78 @@
-# 🚀 Reto 1: LangChain, LangGraph y Observabilidad con LangSmith
+# Reto 1: LangChain, LangGraph y Observabilidad con LangSmith
 
-Informe de entrega y repositorio oficial del **Reto 1**, enfocado en la construcción de aplicaciones con Modelos de Lenguaje (LLMs) usando **LangChain**, orquestación de agentes con **LangGraph** y observabilidad/evaluación avanzada con **LangSmith**.
-
----
-
-## 📄 Informe Oficial en PDF
-
-Puedes descargar e inspeccionar el informe técnico completo generado con telemetría en vivo:
-👉 **[Descargar Informe_Reto1_LangChain_LangSmith.pdf](./Informe_Reto1_LangChain_LangSmith.pdf)**
+Documentación técnica y repositorio oficial correspondiente a la entrega del **Reto 1**, enfocado en la arquitectura de aplicaciones basadas en Modelos de Lenguaje (LLMs) mediante **LangChain**, orquestación de agentes con **LangGraph** y observabilidad, auditoría y evaluación sistemática en la plataforma **LangSmith**.
 
 ---
 
-## 📁 Archivos en este Repositorio
+## Informe Técnico en PDF
+
+El informe ejecutivo y técnico consolidado con telemetría en tiempo real y resultados de evaluación se encuentra disponible en formato PDF:
+
+* **[Descargar Informe_Reto1_LangChain_LangSmith.pdf](./Informe_Reto1_LangChain_LangSmith.pdf)**
+
+---
+
+## Estructura del Repositorio
 
 | Archivo | Descripción |
 |---|---|
-| **[tutorial_langchain_langsmith.ipynb](./tutorial_langchain_langsmith.ipynb)** | Notebook principal ejecutado de inicio a fin con todas las salidas, agentes, RAG y Prompt Hub. |
-| **[Informe_Reto1_LangChain_LangSmith.pdf](./Informe_Reto1_LangChain_LangSmith.pdf)** | Informe ejecutivo en PDF con evidencias, tablas de telemetría y métricas de evaluación. |
-| **[LAMB.pdf](./LAMB.pdf)** | Documento soporte utilizado para la prueba de carga y fragmentación (RAG con BM25). |
-| **[generar_informe_pdf.py](./generar_informe_pdf.py)** | Script en Python (Playwright + LangSmith SDK) que consulta la API y genera el PDF automáticamente. |
-| **[requirements.txt](./requirements.txt)** | Dependencias y versiones exactas para replicar el entorno en un solo paso. |
-| **[.env.example](./.env.example)** | Plantilla de configuración de variables de entorno seguras. |
+| **[tutorial_langchain_langsmith.ipynb](./tutorial_langchain_langsmith.ipynb)** | Notebook interactivo ejecutado en su totalidad, documentando cadenas LCEL, agentes ReAct, RAG y Prompt Hub. |
+| **[Informe_Reto1_LangChain_LangSmith.pdf](./Informe_Reto1_LangChain_LangSmith.pdf)** | Informe formal de resultados con tablas de telemetría y métricas de evaluación. |
+| **[LAMB.pdf](./LAMB.pdf)** | Documento técnico de referencia procesado para las pruebas de particionamiento e indexación RAG con BM25. |
+| **[generar_informe_pdf.py](./generar_informe_pdf.py)** | Script de automatización (Playwright y LangSmith SDK) para generación programática del informe. |
+| **[requirements.txt](./requirements.txt)** | Especificación de dependencias y versiones de librerías para replicación de entorno. |
+| **[.env.example](./.env.example)** | Plantilla de configuración de variables de entorno y credenciales de API. |
 
 > [!IMPORTANT]
-> Siguiendo las mejores prácticas de seguridad, el archivo `.env` real (con las claves privadas de API) está ignorado mediante `.gitignore` y **no** se sube al repositorio público.
+> En conformidad con los estándares de seguridad informática y control de versiones, el archivo `.env` que almacena las credenciales privadas está excluido a través de `.gitignore` y no forma parte del historial público.
 
 ---
 
-## 🛠️ Temáticas y Capacidades Implementadas
+## Capacidades Técnicas Implementadas
 
-En este reto se implementaron y validaron 10 capacidades fundamentales:
+El desarrollo abarca la implementación y validación rigurosa de diez módulos de ingeniería:
 
-1. **Configuración de Observabilidad:** Variables de entorno y conexión con LangSmith (`tutorial-langchain`).
-2. **Inferencia Multi-Modelo:** Integración con `init_chat_model` (Google Gemini 3.5 Flash Lite / Anthropic / OpenAI).
-3. **Cadenas LCEL:** Inferencia estándar (`invoke`), procesamiento paralelo (`batch`) y streaming (`stream`).
-4. **Salida Estructurada con Pydantic:** Forzado de esquema tipado (`Resumen`) con `model.with_structured_output(...)`.
-5. **Herramientas y Agentes ReAct:** Creación de herramientas `@tool` (`clima`, `multiplicar`) con llamadas autónomas multi-paso.
-6. **RAG (Retrieval-Augmented Generation):** Indexación BM25 y análisis de documentos PDF (`LAMB.pdf` en 122 fragmentos).
-7. **Trazabilidad de Código Propio:** Instrumentación de funciones con `@traceable` reflejadas en el árbol de LangSmith.
-8. **Evaluación Sistemática y LLM-as-a-Judge:** Dataset `preguntas-basicas-tutorial`, evaluadores de coincidencia y evaluador semántico juez (`llm_juez`).
-9. **Memoria Conversacional Multi-Turno:** Manejo de sesiones y contexto con `InMemorySaver` y `thread_id`.
-10. **Prompt Hub:** Publicación (`client.push_prompt`) y recuperación versionada (`client.pull_prompt`) de plantillas desacopladas.
-
----
-
-## 📊 Evidencias en LangSmith
-
-* **Proyecto de Monitoreo:** `tutorial-langchain` en [smith.langchain.com](https://smith.langchain.com/).
-* **Dataset de Pruebas:** `preguntas-basicas-tutorial` (100% acierto en evaluación).
-* **Prompt Hub:** Repositorio de prompt versionado `tutor-ia-reto1`.
+1. **Configuración de Observabilidad:** Inicialización de variables de entorno e integración bidireccional con el proyecto `tutorial-langchain` en LangSmith.
+2. **Inferencia Multi-Modelo:** Integración mediante la interfaz unificada `init_chat_model` con soporte para Google Gemini, Anthropic y OpenAI.
+3. **Cadenas de Expresión Declarativas (LCEL):** Implementación de flujos mediante el operador pipe (`|`), con soporte para invocación sincrónica (`invoke`), ejecución concurrente por lotes (`batch`) y transmisión token a token (`stream`).
+4. **Salida Estructurada con Validación de Tipos:** Empleo de esquemas Pydantic (`BaseModel`) vinculados a través de `model.with_structured_output(...)` para garantizar respuestas tipadas en formato JSON estricto.
+5. **Agentes Autónomos ReAct y Function Calling:** Creación de herramientas personalizadas decoradas con `@tool` (`clima`, `multiplicar`), permitiendo al modelo descomponer consultas compuestas y ejecutar llamadas secuenciales a herramientas.
+6. **Recuperación Aumentada por Generación (RAG):** Carga y división de documentos extensos (`LAMB.pdf` procesado en 122 fragmentos) junto con indexación léxica mediante `BM25Retriever` para respuestas fundamentadas en contexto.
+7. **Trazabilidad de Código Nativo:** Instrumentación de funciones Python arbitrarias mediante `@traceable`, registrando entradas, salidas, tiempos de ejecución y metadatos en LangSmith.
+8. **Evaluación Sistemática y LLM-as-a-Judge:** Creación del conjunto de prueba `preguntas-basicas-tutorial`, combinando evaluadores algorítmicos deterministas con un modelo juez semántico (`llm_juez`).
+9. **Memoria Conversacional con Estado Persistente:** Implementación de gestores de estado en memoria (`InMemorySaver`) para trazabilidad de contexto multi-turno indexado por `thread_id`.
+10. **Gobernanza y Versionado de Prompts:** Publicación desacoplada (`client.push_prompt`) y consumo en tiempo de ejecución (`client.pull_prompt`) a través de LangSmith Prompt Hub.
 
 ---
 
-## 🚀 Cómo Replicar este Proyecto
+## Evidencias de Telemetría en LangSmith
 
-1. **Clonar el repositorio:**
+* **Proyecto de Monitoreo:** `tutorial-langchain` en la plataforma [smith.langchain.com](https://smith.langchain.com/).
+* **Conjunto de Evaluación:** `preguntas-basicas-tutorial` (100% de tasa de acierto en suite de pruebas).
+* **Prompt Hub:** Repositorio versionado bajo el identificador `tutor-ia-reto1`.
+
+---
+
+## Procedimiento de Replicación del Entorno
+
+1. **Clonación del repositorio:**
    ```bash
    git clone https://github.com/luiscadn/reto1-langchain-langsmith.git
    cd reto1-langchain-langsmith
    ```
 
-2. **Crear entorno virtual e instalar dependencias:**
+2. **Creación del entorno virtual e instalación de dependencias:**
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate
    pip install -r requirements.txt
    ```
 
-3. **Configurar claves:**
+3. **Configuración de credenciales:**
    ```bash
    cp .env.example .env
-   # Agregar tu LANGSMITH_API_KEY y GOOGLE_API_KEY en .env
+   # Suministrar LANGSMITH_API_KEY y la clave del proveedor LLM en .env
    ```
 
-4. **Ejecutar el notebook:**
-   Abrir `tutorial_langchain_langsmith.ipynb` y seleccionar el kernel de `.venv`.
+4. **Ejecución del cuaderno de trabajo:**
+   Abrir `tutorial_langchain_langsmith.ipynb` y asociar el kernel al entorno virtual `.venv`.

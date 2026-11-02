@@ -223,7 +223,7 @@ html_content = f"""<!DOCTYPE html>
       <strong>Autor:</strong> Luis Cadena<br>
       <strong>Curso:</strong> AI Engineering / GenAI<br>
       <strong>Fecha:</strong> Noviembre 2026<br>
-      <strong>Estado:</strong> <span style="color:#059669; font-weight:700;">100% Completado</span>
+      <strong>Estado:</strong> <span style="color:#059669; font-weight:700;">Completado</span>
     </div>
   </div>
 
@@ -331,7 +331,7 @@ html_content = f"""<!DOCTYPE html>
     </div>
     <p>Se definió un agente con las herramientas <code>@tool clima</code> y <code>@tool multiplicar</code>. El agente demostró autonomía al descomponer preguntas compuestas y ejecutar múltiples llamadas a herramientas en una sola invocación (ej: Cali, Shanghái y Brujas).</p>
     <div class="output-box">
-      <strong>Ejecución del Agente:</strong> Llamada automática a <code>clima(ciudad='Cali')</code> [24°C] + <code>multiplicar(a=23.5, b=4)</code> [94.0] &rarr; Síntesis final correcta entregada al usuario.
+      <strong>Ejecución del Agente:</strong> Llamada automática a <code>clima(ciudad='Cali')</code> [24°C] + <code>multiplicar(a=23.5, b=4)</code> [94.0] con consolidación final estructurada para el usuario.
     </div>
   </div>
 
@@ -361,7 +361,7 @@ html_content = f"""<!DOCTYPE html>
     </div>
     <p>Se registró el dataset <code>preguntas-basicas-tutorial</code> en LangSmith. Se ejecutó una suite de evaluación con dos evaluadores deterministas (<code>contiene_respuesta</code>, <code>es_breve</code>) y un evaluador semántico LLM-as-a-Judge (<code>llm_juez</code>).</p>
     <div class="output-box">
-      <strong>Resultados de Evaluación:</strong> 3 de 3 ejemplos aprobados con <code>score: True</code> (100% coincidencia). Experimento sincronizado bajo el ID <code>gemini-v1-09e3facd</code>.
+      <strong>Resultados de Evaluación:</strong> 3 de 3 ejemplos aprobados con <code>score: True</code> (100% coincidencia). Experimento sincronizado bajo el identificador <code>gemini-v1-09e3facd</code>.
     </div>
   </div>
 
@@ -403,12 +403,13 @@ html_content = f"""<!DOCTYPE html>
 """
 
 for row in runs_data:
-    badge_style = "color:#059669; font-weight:600;" if row["status"] == "success" else "color:#dc2626;"
+    status_text = "EXITOSO" if row["status"] == "success" else row["status"].upper()
+    badge_style = "color:#059669; font-weight:600;" if row["status"] == "success" else "color:#dc2626; font-weight:600;"
     html_content += f"""      <tr>
         <td><code>{row['name']}</code></td>
         <td>{row['type']}</td>
         <td>{row['latency']}</td>
-        <td><span style="{badge_style}">✓ {row['status']}</span></td>
+        <td><span style="{badge_style}">{status_text}</span></td>
         <td>{row['tokens']}</td>
       </tr>\n"""
 
